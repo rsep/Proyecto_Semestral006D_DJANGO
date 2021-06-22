@@ -8,7 +8,8 @@ Integrantes:
 - Nicolás Almarza
 - Rosario Sepúlveda
 - Pedro Valdovinos
--- Lider equipo: Nicolás Almarza
+
+Lider equipo: Nicolás Almarza
 
 
 
