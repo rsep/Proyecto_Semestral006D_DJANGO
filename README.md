@@ -5,10 +5,10 @@ Caso a desarrollar: Cooperativa Artística "Grupo Cero”
 
 Integrantes:
 
-Nicolás Almarza
-Rosario Sepúlveda
-Pedro Valdovinos
-Lider equipo: Nicolás Almarza
+-Nicolás Almarza
+-Rosario Sepúlveda
+-Pedro Valdovinos
+--Lider equipo: Nicolás Almarza
 
 
 
