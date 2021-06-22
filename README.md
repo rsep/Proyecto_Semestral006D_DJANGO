@@ -1,7 +1,12 @@
 # Proyecto_Semestral006D_DJANGO
 Proyecto Semestral 006D migrado a DJANGO
 
-# /*Script creacion usuario*/
+
+
+
+
+# Usuario Django en BD
+/*Script creacion usuario*/
 ALTER SESSION SET "_ORACLE_SCRIPT" = true;
 
 CREATE USER django_semestral IDENTIFIED BY django_semestral;
