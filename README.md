@@ -1,6 +1,15 @@
 # Proyecto_Semestral006D_DJANGO
 Proyecto Semestral 006D migrado a DJANGO
 
+Caso a desarrollar: Cooperativa Artística "Grupo Cero”
+
+Integrantes:
+
+Nicolás Almarza
+Rosario Sepúlveda
+Pedro Valdovinos
+Lider equipo: Nicolás Almarza
+
 
 
 
