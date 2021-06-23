@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Biografia, Obra, Artista
+
 
 # Create your views here.
 def index(request):
@@ -9,20 +9,10 @@ def nosotros(request):
     return render(request,'core/nosotros.html')
 
 def ficha_obra(request):
-    # crear lista obras para guardar elementos
-    obras = Obra.objects.all()
-    # # crear diccionario de datos, dentro del objeto datos, voy a guardar las obras
-    datos = {
-        'obras' : obras
-    }
-    return render(request,'core/ficha_obra.html',datos)
+    return render(request,'core/ficha_obra.html')
 
 def bio_artista(request):
-    bios = Biografia.objects.all()
-    datos = {
-        'bios' : bios
-    }
-    return render(request,'core/bio_artista.html',datos)
+    return render(request,'core/bio_artista.html')
 
 def galeria_obras(request):
     return render(request,'core/galeria_obras.html')
