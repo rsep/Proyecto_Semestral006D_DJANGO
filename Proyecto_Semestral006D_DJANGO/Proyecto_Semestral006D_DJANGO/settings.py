@@ -82,7 +82,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
         'NAME': '127.0.0.1:1521/xe',
-        'USER': 'django_semestral',
+        'USER': 'django_proyecto',
         'PASSWORD': 'django_semestral',
         'TEST': {
             'USER': 'default_test',

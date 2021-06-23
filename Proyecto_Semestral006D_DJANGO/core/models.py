@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Artista(models.Model):
-    num_id = models.IntegerField(primary_key=True, verbose_name='Id Artista')
+    id_artista = models.AutoField(primary_key=True, verbose_name='Id Artista')
     nombre = models.CharField(max_length=50, verbose_name='Nombre')
     email = models.EmailField(max_length=50, verbose_name='Email')
     password = models.CharField(max_length=5, verbose_name='Contraseña')
