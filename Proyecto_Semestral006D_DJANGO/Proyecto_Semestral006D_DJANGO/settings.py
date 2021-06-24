@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -33,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # TERCEROS
     'bootstrap4',
+    'crispy_forms',
     # DJANGO
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,6 +45,8 @@ INSTALLED_APPS = [
     # MIS APPS
     'core',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -130,6 +134,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# es la url de referencia para que el navegador acceda a los archivos a través de http
+MEDIA_URL = '/media/'
+
+# ruta del servidor para almacenar archivos en el pc
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

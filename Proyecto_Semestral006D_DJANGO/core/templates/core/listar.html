@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+
+{% block contenido %}
+<table class="table table-hover">
+    <tr>
+        <td>ID</td>
+        <td>Nombre</td>
+        <td>Email</td>
+        <td>Contraseña</td>
+        td>Documento</td>
+        <td>Acciones</td>
+    </tr>
+    <!-- en cada vuelta del for, agregue una fila -->
+    {% for x in artistas %}
+    <tr>
+        <!-- para imprimir en pantalla es doble llave -->
+        <td>{{ x.id_artista }}</td>
+        <td>{{ x.nombre }}</td>
+        <td>{{ x.email }}</td>
+        <td>{{ x.password }}</td>
+        <td>{{ x.foto_perfil }}</td>
+        <td>
+            <a href="{% url 'eliminar' x.id_artista %}">Delete</a>
+        </td>
+        
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
