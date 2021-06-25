@@ -3,6 +3,8 @@
 from django.urls import path
 from .views import index, nosotros, ficha_obra, bio_artista, galeria_obras, galeria_artistas, perfil, contacto, registro
 
+from .views import test, test2, listar, eliminar
+
 urlpatterns = [
     path('', index, name="index"),
     path('nosotros/', nosotros, name="nosotros"),
@@ -13,4 +15,10 @@ urlpatterns = [
     path('perfil/', perfil, name="perfil"),
     path('contacto/', contacto, name="contacto"),
     path('registro/', registro, name="registro"),
+
+    # test (despues se borra)
+    path('test/',test, name="test"),
+    path('test2/',test2, name="test2"),
+    path('listar/',listar, name="listar"),
+    path('eliminar/<int:id_artista>',eliminar, name="eliminar"),
 ]
