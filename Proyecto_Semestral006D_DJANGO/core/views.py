@@ -33,7 +33,12 @@ def galeria_obras(request):
     return render(request,'core/galeria_obras.html')
 
 def galeria_artistas(request):
-    return render(request,'core/galeria_artistas.html')
+    if request.method == 'GET':
+        artistas = Artista.objects.all()
+    datos = { 
+        'artistas' : artistas
+    }
+    return render(request,'core/galeria_artistas.html',datos)
 
 def perfil(request):
     return render(request,'core/perfil.html')
@@ -44,21 +49,21 @@ def contacto(request):
 def registro(request):
     return render(request,'core/registro.html')
 
-def test(request,id):
+def test(request):
 
-    # 1. traer el vehiculo, usar metodo get, traer vehiculo cuya patente es igual al id
-    artista = Artista.objects.get(id_artista = id)
+    # # 1. traer el vehiculo, usar metodo get, traer vehiculo cuya patente es igual al id
+    # artista = Artista.objects.get(id_artista = id)
 
-    # 2. construccion formulario
-    datos = {
-        'form' : artista
-    }
-
-    # if request.method == 'GET':
-    #     artistas = Artista.objects.all()
-    # datos = { 
-    #     'artistas' : artistas
+    # # 2. construccion formulario
+    # datos = {
+    #     'form' : artista
     # }
+
+    if request.method == 'GET':
+        artistas = Artista.objects.all()
+    datos = { 
+        'artistas' : artistas
+    }
     return render(request,'core/test.html',datos)
 
 def test2(request):

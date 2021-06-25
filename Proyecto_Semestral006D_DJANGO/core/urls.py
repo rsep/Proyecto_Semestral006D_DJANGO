@@ -16,7 +16,8 @@ urlpatterns = [
     path('contacto/', contacto, name="contacto"),
     path('registro/', registro, name="registro"),
 
-    path('test/<id>',test, name="test"),
+    # test (despues se borra)
+    path('test/',test, name="test"),
     path('test2/',test2, name="test2"),
     path('listar/',listar, name="listar"),
     path('eliminar/<int:id_artista>',eliminar, name="eliminar"),

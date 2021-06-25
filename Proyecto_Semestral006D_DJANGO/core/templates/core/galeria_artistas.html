@@ -44,118 +44,21 @@
         </div> 
     </div>
 
-    <!-- Linea 1 de Cards -->
-    <div id="card1" class="row">            
+    <!-- cards -->
+    <div id="card1" class="row">       
+        {% for x in artistas %}    
         <div class="col">
             <div class="card text-center ex2" style="width: 18rem;">
-                <a href="#"> 
+                <a href="{% url 'bio_artista' %}"> 
                     <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/1_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
-
+                    tempor incididunt ut labore et dolore magna aliqua."><img src="{{ x.foto_perfil.url }}" alt="{{ x.nombre }}" class="card-img-top anima"></abbr>                                                                   
                 </a>
                 <div class="card-body">
-                    <h3 class="card-text">Nala Nipango</h3>
+                    <h3 class="card-text">{{ x.nombre | title}}</h3>
                 </div>
             </div>
         </div>
-        
-        <div class="col">
-            <div class="card text-center ex2" style="width: 18rem;">
-                <a href="bio_artista2.html">
-                    <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/2_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
-
-                </a>
-                <div class="card-body">
-                    <h3 class="card-text">Xavier Palos</h3>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col">
-            <div class="card text-center ex2" style="width: 18rem;">
-                <a href="#">
-                    <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/3_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
-
-                </a>
-                <div class="card-body">
-                    <h3 class="card-text">Linda Maverick</h3>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col">
-
-            <div class="card text-center ex2" style="width: 18rem;">
-                <a href="bio_artista1.html">
-                    <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/4_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
-
-                </a>
-                <div class="card-body">
-                    <h3 class="card-text">Dean Lawson</h3>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-
-    <!-- Linea 2 de Cards -->
-    <div id="card2" class="row">  
-        <div class="col">
-
-            <div class="card text-center ex2" style="width: 18rem;">
-                <a href="#">
-                    <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/5_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
-
-                </a>
-                <div class="card-body">
-                    <h3 class="card-text">Anna Chen</h3>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col">
-            <div class="card text-center ex2" style="width: 18rem;">
-                <a href="#">
-                    <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/6_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
-
-                </a>
-                <div class="card-body">
-                    <h3 class="card-text">Matt Sputnik</h3>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col">
-            <div class="card text-center ex2" style="width: 18rem;">
-                <a href="#">
-                    <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/9_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
-
-                </a>
-                <div class="card-body">
-                    <h3 class="card-text">Selva Lihn</h3>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col">
-            <div class="card text-center ex2" style="width: 18rem;">
-                <a href="bio_artista3.html">
-                    <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/8_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
-
-                </a>
-                <div class="card-body">
-                    <h3 class="card-text">Antuan Rossi</h3>
-                </div>
-            </div>
-        </div>
-        
+        {% endfor %}
     </div>
 
     <!-- Boton Ver Más -->
