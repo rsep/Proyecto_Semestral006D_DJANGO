@@ -8,12 +8,12 @@ from .models import Artista
 
 # Create your views here.
 def index(request):
-    # obras = Obra.objects.all()
-    # datos = {
-    #     'obras' : obras
-    # }
-    # return render(request,'core/index.html',datos)
-    return render(request,'core/index.html')
+    if request.method == 'GET':
+        artistas = Artista.objects.all()
+    datos = { 
+        'artistas' : artistas
+    }
+    return render(request,'core/index.html',datos)
 
 def nosotros(request):
     return render(request,'core/nosotros.html')

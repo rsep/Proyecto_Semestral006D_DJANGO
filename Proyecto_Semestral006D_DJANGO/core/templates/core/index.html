@@ -83,86 +83,21 @@
                 </div>
             </div>
         </div>
-
-        <!-- Linea de Cards Artistas -->
-        <div id="card1" class="row">            
-            <div class="col col-md-6 col-xl-4">
+        
+        <!-- cards -->
+        <div id="card1" class="row">       
+            {% for x in artistas %}    
+            <div class="col">
                 <div class="card text-center ex2" style="width: 18rem;">
-
-                    <a href="bio_artista1.html">
-                        <img src="{% static 'core/img/artistas/4_c.jpg' %}" class="card-img-top anima" alt="...">
+                    <a href="{% url 'bio_artista' %}"> 
+                        <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua."><img src="{{ x.foto_perfil.url }}" alt="{{ x.nombre }}" class="card-img-top anima"></abbr>                                                                   
                     </a>
                     <div class="card-body">
-                        <h5 class="card-text">Dean Lawson</h5>
+                        <h3 class="card-text">{{ x.nombre | title}}</h3>
                     </div>
                 </div>
             </div>
-            
-            <div class="col col-md-6 col-xl-4">
-                <div class="card text-center ex2" style="width: 18rem;">
-
-                    <!-- linkear al artista 2 -->
-                    <a href="bio_artista2.html">
-                        <img src="{% static 'core/img/artistas/2_c.jpg' %}" class="card-img-top anima" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-text">Xavier Palos</h5>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col col-md-6 col-xl-4">
-                <div class="card text-center ex2" style="width: 18rem;">
-
-                    <!-- linkear al artista 3 -->
-                    <a href="bio_artista3.html">
-                        <img src="{% static 'core/img/artistas/8_c.jpg' %}" class="card-img-top anima" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-text">Antuan Rossi</h5>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col col-md-6 col-xl-4">
-                <div class="card text-center ex2" style="width: 18rem;">
-
-                    <a href="#">
-                        <img src="{% static 'core/img/artistas/6_c.jpg' %}" class="card-img-top anima" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-text">Matt Sputnik</h5>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col col-md-6 col-xl-4">
-
-                <div class="card text-center ex2" style="width: 18rem;">
-
-                    <a href="#">
-                        <img src="{% static 'core/img/artistas/3_c.jpg' %}" class="card-img-top anima" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-text">Linda Maverick</h5>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col col-md-6 col-xl-4">
-
-                <div class="card text-center ex2" style="width: 18rem;">
-                  
-                    <a href="#">
-                        <img src="{% static 'core/img/artistas/9_c.jpg' %}" class="card-img-top anima" alt="...">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-text">Selva Lihn</h5>
-                    </div>
-                </div>
-            </div>
-            
+            {% endfor %}
         </div>
 {% endblock %}
