@@ -7,6 +7,7 @@ from .models import Artista, Obra, Biografia
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
+# OK
 def index(request):
     if request.method == 'GET':
         artistas = Artista.objects.all()
@@ -18,9 +19,11 @@ def index(request):
     }
     return render(request,'core/index.html',datos)
 
+# OK
 def nosotros(request):
     return render(request,'core/nosotros.html')
 
+# OK
 def ficha_obra(request,id):
     obra = get_object_or_404(Obra, id_obra = id)
     # identificador = Obra.autor
@@ -33,7 +36,7 @@ def ficha_obra(request,id):
     }
     return render(request, 'core/ficha_obra.html', datos)
 
-
+# OK
 def galeria_obras(request):
     if request.method == 'GET':
         obras = Obra.objects.all()
@@ -42,6 +45,7 @@ def galeria_obras(request):
     }
     return render(request,'core/galeria_obras.html',datos)
 
+# OK
 def galeria_artistas(request):
     if request.method == 'GET':
         artistas = Artista.objects.all()
@@ -59,6 +63,7 @@ def contacto(request):
 def registro(request):
     return render(request,'core/registro.html')
 
+# OK
 def bio_artista(request,id):
 # ejemplo de bio_artista (instancias de Artista, Biografia, Obra)
     # 1. traer el vehiculo, usar metodo get, traer vehiculo cuya patente es igual al id
@@ -75,18 +80,31 @@ def bio_artista(request,id):
 
 
 
+# -----------------------------------------------------
+# TESTEOS
+# -----------------------------------------------------
 
-# def test(request,id):
-#     obra = get_object_or_404(Obra, id_obra = id)
-#     # artista = get_object_or_404(Artista, id_artista = id)
+def test(request,id):
+        # 1. traer el vehiculo, usar metodo get, traer vehiculo cuya patente es igual al id
+    bio = Biografia.objects.get(id_bio = id)
 
-    
-    
-#     datos = {
-#         # 'artista' : artista,
-#         'obra' : obra
-#     }
-#     return render(request,'core/test.html',datos)
+    # 2. construccion formulario
+    datos = {
+        # doc : bio.bio,
+        'form' : BiografiaForm(instance=id)
+    }
+
+    if request.method == 'POST':
+        formulario = BiografiaForm(data=request.POST, instance=id)
+        # verificar que el formulario sea valido
+        if formulario.is_valid:
+            # debo guardar el formulario
+            formulario.save()
+            # mensaje de texto
+            datos['mensaje']='Datos modificados exitosamente'
+        
+    return render(request,'core/test.html',datos)
+
 
 def test2(request):
     datos = {
