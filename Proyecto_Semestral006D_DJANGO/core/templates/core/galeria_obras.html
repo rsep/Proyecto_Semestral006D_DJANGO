@@ -51,129 +51,31 @@
         </div> 
     </div>
 
-    <!-- Linea 1 de Cards -->
-    <div id="card1" class="row">            
+    <!-- cards -->
+    <div id="card1" class="row">       
+        {% for x in obras %}    
         <div class="col">
+            <div class="card text-center ex2" style="width: 18rem;">
+                <a href="{% url 'ficha_obra' x.id_obra %}"> 
+                    <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua."><img src="{{ x.imagen_obra.url }}" alt="{{ x.titulo }}" class="card-img-top anima"></abbr>                                                                   
+                </a>
+                <div class="card-body">
+                    <h3 class="card-text">{{ x.autor | title}}</h3>
+                    <h5 class="card-text">{{ x.titulo | title}}</h5>
+                    <script>llenadoPrecios()</script>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
 
-            <div class="card text-center ex2" style="width: 18rem;">
-
-                <a href="{% url 'ficha_obra' %}"> 
-                    <img src="{% static 'core/img/obra1.jpg' %}" class="card-img-top anima" alt="...">
-                </a>
-                <div class="card-body">
-                    <h3 class="card-text">Artista</h3>
-                    <h4 class="card-text">Titulo</h4>
-                    <h5 class="card-text precio"></h5>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col">
-            <div class="card text-center ex2" style="width: 18rem;">
-
-                <a href="{% url 'ficha_obra' %}">
-                    <img src="{% static 'core/img/obra5.jpg' %}" class="card-img-top anima" alt="...">
-                </a>
-                <div class="card-body">
-                    <h3 class="card-text">Artista</h3>
-                    <h4 class="card-text">Titulo</h4>
-                    <h5 class="card-text precio"></h5>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col">
-            <div class="card text-center ex2" style="width: 18rem;">
-
-                <a href="#">
-                    <img src="{% static 'core/img/obra3.jpg' %}" class="card-img-top anima" alt="...">
-                </a>
-                <div class="card-body">
-                    <h3 class="card-text">Artista</h3>
-                    <h4 class="card-text">Titulo</h4>
-                    <h5 class="card-text precio"></h5>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col">
-            <div class="card text-center ex2" style="width: 18rem;">
-
-                <a href="{% url 'ficha_obra' %}">
-                    <img src="{% static 'core/img/obra4.jpg' %}" class="card-img-top anima" alt="...">
-                </a>
-                <div class="card-body">
-                    <h3 class="card-text">Artista</h3>
-                    <h4 class="card-text">Titulo</h4>
-                    <h5 class="card-text precio"></h5>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-
-    <!-- Linea 2 de Cards -->
-    <div id="card2" class="row">  
-        <div class="col">
-            <div class="card text-center ex2" style="width: 18rem;">
-                <a href="#">
-                    <img src="{% static 'core/img/obra6.jpg' %}" class="card-img-top anima" alt="...">
-                </a>
-                <div class="card-body">
-                    <h3 class="card-text">Artista</h3>
-                    <h4 class="card-text">Titulo</h4>
-                    <h5 class="card-text precio"></h5>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col">
-            <div class="card text-center ex2" style="width: 18rem;">
-                <a href="#">
-                    <img src="{% static 'core/img/obra7.jpg' %}" class="card-img-top anima" alt="...">
-                </a>
-                <div class="card-body">
-                    <h3 class="card-text">Artista</h3>
-                    <h4 class="card-text">Titulo</h4>
-                    <h5 class="card-text precio"></h5>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col">
-            <div class="card text-center ex2" style="width: 18rem;">
-                <a href="#">
-                    <img src="{% static 'core/img/obra8.jpg' %}" class="card-img-top anima" alt="...">
-                </a>
-                <div class="card-body">
-                    <h3 class="card-text">Artista</h3>
-                    <h4 class="card-text">Titulo</h4>
-                    <h5 class="card-text precio"></h5>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col">
-            <div class="card text-center ex2" style="width: 18rem;">
-                <a href="#">
-                    <img src="{% static 'core/img/obra9.jpg' %}" class="card-img-top anima" alt="...">
-                </a>
-                <div class="card-body">
-                    <h3 class="card-text">Artista</h3>
-                    <h4 class="card-text">Titulo</h4>
-                    <h5 class="card-text precio"></h5>
-                </div>
-            </div>
-        </div>
-        
-    </div>
     <script>llenadoPrecios()</script>
 
     <!-- Boton Ver Más -->
     <div class="row">
         <div class="col">
             <div class="btn-centrado embe">
-                <button id="show-more" type="button" class="btn btn-dark bot1">Ver Más</button> 
+                <button type="button" class="btn btn-dark bot1">Ver más</button> 
             </div> 
         </div>
     </div>
@@ -181,58 +83,41 @@
     <!-- seccion MAS (despues de click on button) / oculta -->
     <div id="card3" class="row oculto">
         <div class="col">
-            <div class="card text-center ex2 gallery" style="width: 18rem;">
 
+            <div class="card text-center ex2" style="width: 18rem;">
                 <a href="#"> 
-                    <img src="{% static 'core/img/obra10.jpg' %}" class="card-img-top anima" alt="...">
+                    <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/9_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
                 </a>
                 <div class="card-body">
                     <h3 class="card-text">Artista</h3>
-                    <h4 class="card-text">Titulo</h4>
-                    <h5 class="card-text precio"></h5>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card text-center ex2 gallery" style="width: 18rem;">
-
+            <div class="card text-center ex2" style="width: 18rem;">
                 <a href="#"> 
-                    <img src="{% static 'core/img/obra11.jpg' %}" class="card-img-top anima" alt="...">
+                    <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/10_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
                 </a>
                 <div class="card-body">
                     <h3 class="card-text">Artista</h3>
-                    <h4 class="card-text">Titulo</h4>
-                    <h5 class="card-text precio"></h5>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card text-center ex2 gallery" style="width: 18rem;">
+            <div class="card text-center ex2" style="width: 18rem;">
                 <a href="#"> 
-                    <img src="{% static 'core/img/obra12.jpg' %}" class="card-img-top anima" alt="...">
+                    <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/11_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
+
                 </a>
                 <div class="card-body">
                     <h3 class="card-text">Artista</h3>
-                    <h4 class="card-text">Titulo</h4>
-                    <h5 class="card-text precio"></h5>
                 </div>
             </div>
         </div>
-
-        <div class="col">
-            <div class="card text-center ex2 gallery" style="width: 18rem;">
-                <a href="#"> 
-                    <img src="{% static 'core/img/obra13.jpg' %}" class="card-img-top anima" alt="...">
-                </a>
-                <div class="card-body">
-                    <h3 class="card-text">Artista</h3>
-                    <h4 class="card-text">Titulo</h4>
-                    <h5 class="card-text precio"></h5>
-                </div>
-            </div>
-        </div>
-
     </div>
 {% endblock %}

@@ -42,3 +42,8 @@ class Obra(models.Model):
         return self.titulo
     # def __str__(self):
     #     return str(self.id_obra)
+
+    # para asegurar que al realizar un delete, borre la carga de foto en carpeta uploads de media
+    def delete(self, *args, **kwargs):
+        self.imagen_obra.delete()
+        super().delete(*args, **kwargs)

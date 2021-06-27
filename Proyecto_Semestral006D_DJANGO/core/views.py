@@ -11,27 +11,36 @@ def index(request):
     if request.method == 'GET':
         artistas = Artista.objects.all()
         # obras = Obra.objects.all()
-        obra = Obra.objects.filter(autor = 3)
+        # obra = Obra.objects.filter(autor = 3)
     datos = { 
-        'artistas' : artistas,
-        'obra' : obra
+        'artistas' : artistas
+        # 'obra' : obra
     }
     return render(request,'core/index.html',datos)
 
 def nosotros(request):
     return render(request,'core/nosotros.html')
 
-def ficha_obra(request):
-    # obra = Obra.objects.all.get(id_obra = id)
-    # datos = {
-    #     'obra' : obra
-    # }
-    # return render(request,'core/ficha_obra.html',datos)
-    return render(request,'core/ficha_obra.html')
+def ficha_obra(request,id):
+    obra = get_object_or_404(Obra, id_obra = id)
+    # identificador = Obra.autor
+    # artista = get_object_or_404(Artista, id_artista = identificador)
+
+    # 2. construccion formulario
+    datos = {
+        # 'artista' : artista,
+        'obra' : obra
+    }
+    return render(request, 'core/ficha_obra.html', datos)
 
 
 def galeria_obras(request):
-    return render(request,'core/galeria_obras.html')
+    if request.method == 'GET':
+        obras = Obra.objects.all()
+    datos = { 
+        'obras' : obras
+    }
+    return render(request,'core/galeria_obras.html',datos)
 
 def galeria_artistas(request):
     if request.method == 'GET':
@@ -64,17 +73,20 @@ def bio_artista(request,id):
     
     return render(request,'core/bio_artista.html',datos)
 
-def test(request,id):
-    obra = get_object_or_404(Obra, id_obra = id)
-    # artista = get_object_or_404(Artista, id_artista = id)
+
+
+
+# def test(request,id):
+#     obra = get_object_or_404(Obra, id_obra = id)
+#     # artista = get_object_or_404(Artista, id_artista = id)
 
     
     
-    datos = {
-        # 'artista' : artista,
-        'obra' : obra
-    }
-    return render(request,'core/test.html',datos)
+#     datos = {
+#         # 'artista' : artista,
+#         'obra' : obra
+#     }
+#     return render(request,'core/test.html',datos)
 
 def test2(request):
     datos = {
