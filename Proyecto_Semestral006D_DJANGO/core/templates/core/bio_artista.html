@@ -1,36 +1,34 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
-{% block docname%}
+
+{% block docname %}
     <title>Zero | Bio</title>
-{% endblock%}
+{% endblock %}
 
 
 {% block contenido%}
-    <!-- {% for b in bios %} -->
+    <!-- titulo: nombre artista -->
     <div class="row">
         <div id="nameArtist" class="col">
-            <h1>nombre</h1>
-            <!-- <h1>{{ b.autor }}</h1> -->
+            <h1>{{ artista.nombre }}</h1>
         </div>
     </div>
 
+    <!-- imagen + textos laterales -->
     <div class="row">
-        <!-- imagen -->
         <div id="foto_bio" class="col-12 col-sm-6">
-            <img src="{% static 'core/img/artistas/4_c.jpg' %}" alt="Dean Lawson" class="img-fluid">
+            <img src="{{ artista.foto_perfil.url }}" alt="{{ artista.nombre }}" class="img-fluid">
         </div>
-        
-        <!-- Texto Bio -->
-        <div id="ficha_bio" class="col-12 col-sm-6">
-            <h3>Bio</h3>
-            <!-- <p>{{ b.bio }}</p> -->
-            <h3>Expos</h3>
-            <!-- <p>{{ b.expos }}</p> -->
+        <div id="ficha_bio" class="col">
+            <h1>Bio</h1>
+            <p>{{ bio.bio }}</p>
+            <br>
+            <h1>Expos</h1>
+            <p>{{ bio.expos }}</p>
         </div>
-        <!-- {% endfor %} -->
     </div>
-
+    
     <!-- Boton Volver -->
     <div id="boton_back" class="row">
         <div class="col">
@@ -41,9 +39,6 @@
     </div>
 {% endblock%}
 
-    
 
-
-
-
-  
+<!-- TAREA VIERNES -->
+<!-- probar cargar data de 1 persona segun id en una template (bio_artista) -->
