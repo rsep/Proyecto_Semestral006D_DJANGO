@@ -1,5 +1,6 @@
 # from core.models import Obra
-from core.forms import ArtistaForm, ObraForm, BiografiaForm
+from django.forms.formsets import formset_factory
+from core.forms import ArtistaForm, ObraForm, BiografiaForm, RegistroForm
 from django.shortcuts import render, redirect
 from .models import Artista, Obra, Biografia
 # from django.core.files.storage import FileSystemStorage
@@ -85,23 +86,25 @@ def bio_artista(request,id):
 # -----------------------------------------------------
 
 def test(request,id):
-        # 1. traer el vehiculo, usar metodo get, traer vehiculo cuya patente es igual al id
-    bio = Biografia.objects.get(id_bio = id)
-
-    # 2. construccion formulario
+    # 1. traer el vehiculo, usar metodo get, traer vehiculo cuya patente es igual al id
+    bio = Biografia.objects.get(autor_id = id)
+    # obra = Obra.objects.get(autor_id = id)
     datos = {
-        # doc : bio.bio,
-        'form' : BiografiaForm(instance=id)
+        'form' : BiografiaForm(instance=bio),
+        'form2' : ObraForm()
     }
 
     if request.method == 'POST':
-        formulario = BiografiaForm(data=request.POST, instance=id)
-        # verificar que el formulario sea valido
+        formulario = BiografiaForm(data=request.POST, instance=bio)
+        formulario2 = ObraForm(request.POST)
         if formulario.is_valid:
-            # debo guardar el formulario
             formulario.save()
-            # mensaje de texto
-            datos['mensaje']='Datos modificados exitosamente'
+            datos['mensaje'] = 'Bio modificada correctamente'
+            # return redirect(to='index')
+        if formulario2.is_valid:
+            formulario2.save()
+            datos['mensaje'] = 'Obra ingresada correctamente'
+            
         
     return render(request,'core/test.html',datos)
 
