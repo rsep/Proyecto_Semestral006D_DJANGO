@@ -1,0 +1,117 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block docname %}
+    <title>Zero | Galeria Obras</title>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'core/js/mostrar.js' %}"></script>
+{% endblock %}
+
+
+{% block contenido %}
+    <!-- Galeria titulo --> 
+    <div class="row">      
+        <div id="uno">
+            <h1>Galería</h1>
+        </div>
+    </div>
+
+    <!-- Search -->
+    <div class="row"> 
+        <div class="col-12 col-md-12">
+            <div id="search">
+                <div class="row mb-5">
+                    <div class="col-lg-8 mx-auto">
+                        <form action="">
+                            <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                            <div class="input-group">
+                                <input type="search" placeholder="Buscar por artista, tipo, concepto" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                                <div class="input-group-append">
+                                <button id="button-addon1" type="submit" class="btn btn-link text-primary">
+                                    <!-- <i class="bi bi-search"></i> -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#FFF" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                    </svg>
+                                </button>
+                                </div>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <!-- cards -->
+    <div id="card1" class="row">       
+        {% for x in obras %}    
+        <div class="col">
+            <div class="card text-center ex2" style="width: 18rem;">
+                <a href="{% url 'ficha_obra' x.id_obra %}"> 
+                    <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua."><img src="{{ x.imagen_obra.url }}" alt="{{ x.titulo }}" class="card-img-top anima"></abbr>                                                                   
+                </a>
+                <div class="card-body">
+                    <h3 class="card-text">{{ x.autor | title}}</h3>
+                    <h5 class="card-text">{{ x.titulo | title}}</h5>
+                    <h5 class="card-text precio"></h5>
+                    <!-- ${{ x.precio }} -->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    <!-- Boton Ver Más -->
+    <div class="row">
+        <div class="col">
+            <div class="btn-centrado embe">
+                <button type="button" class="btn btn-dark bot1">Ver más</button> 
+            </div> 
+        </div>
+    </div>
+
+    <!-- seccion MAS (despues de click on button) / oculta -->
+    <div id="card3" class="row oculto">
+        <div class="col">
+
+            <div class="card text-center ex2" style="width: 18rem;">
+                <a href="#"> 
+                    <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/9_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
+                </a>
+                <div class="card-body">
+                    <h3 class="card-text">Artista</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card text-center ex2" style="width: 18rem;">
+                <a href="#"> 
+                    <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/10_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
+                </a>
+                <div class="card-body">
+                    <h3 class="card-text">Artista</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card text-center ex2" style="width: 18rem;">
+                <a href="#"> 
+                    <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/11_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
+
+                </a>
+                <div class="card-body">
+                    <h3 class="card-text">Artista</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

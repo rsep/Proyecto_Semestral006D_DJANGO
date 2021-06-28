@@ -1,0 +1,101 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block js %}
+    <script src="{% static 'core/js/status.js' %}"></script>
+    <script>redireccionar()</script>
+    <script>estado_registro()</script>
+    <script src="js/validacion.js"></script>
+    <script src="js/micodigo.js"></script>
+{% endblock %}
+
+{% block docname%}
+    <title>Zero | Registro</title>
+{% endblock%}
+
+{% block contenido %}
+    <!-- imagenes slider -->
+    <div class="row">
+        <div class="col">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <div id="cinco"> 
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <a href="ficha_obra1.html">
+                                <img src="{% static 'core/img/obra1.jpg' %}" class="d-block w-100 anima" alt="obra 1">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="ficha_obra2.html">
+                                <img src="{% static 'core/img/obra4.jpg' %}" class="d-block w-100 anima" alt="obra 2">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="Ficha_obra3.html">
+                                <img src="{% static 'core/img/obra5.jpg' %}" class="d-block w-100 anima" alt="obra 3">
+                            </a>
+                        </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                        </a>
+                </div>           
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- formulario para registro -->
+        <div class="col miFormulario bg_registro">
+            <h2 class="banner">Registrar Cuenta</h2>
+
+            <form action="" id="form_registro" method="POST" name="contacto">
+                <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre completo" required>
+                    <div class="invalid-feedback" id="eNombre"></div>
+                <br>
+                <label for="mail">Email:</label>
+                    <input type="email" class="form-control" name="mail" id="mail" placeholder="example@mail.com" required>
+                    <div class="invalid-feedback" id="eMail"></div>
+                <br>
+                <label for="clave">Contraseña</label>
+                    <input type="password" class="form-control" name="clave" id="clave" required>
+                    <div class="invalid-feedback" id="ePass"></div>
+                <br>
+
+                <button type="submit" id="btn_submit" class="btn btn-dark">Registrarme</button>
+
+                <br>
+            </form>
+        </div>
+
+        <!-- formulario para login -->
+        <div class="col miFormulario bg_login">
+            <h2 class="banner">Iniciar Sesión</h2>
+
+            <form action="" id="form_login" method="POST" name="contacto">
+
+                <label for="log_mail">Email:</label>
+                    <input type="email" class="form-control" name="log_mail" id="log_mail" placeholder="example@mail.com" required>
+                    <div class="invalid-feedback" id="eMail_log"></div>
+                <br>
+                <label for="log_clave">Contraseña</label>
+                    <input type="password" class="form-control" name="log_clave" id="log_clave" required>
+                    <div class="invalid-feedback" id="ePass_log"></div>
+                <br>
+                <button type="submit" id="b_acceso" class="btn btn-dark">Acceder</button>
+
+            </form>
+        </div>    
+    </div>
+{% endblock %}

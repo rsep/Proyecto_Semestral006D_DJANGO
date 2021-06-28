@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block docname %}
+    <title>Zero | Bio</title>
+{% endblock %}
+
+
+{% block contenido%}
+    <!-- titulo: nombre artista -->
+    <div class="row">
+        <div id="nameArtist" class="col">
+            <h1>{{ artista.nombre }}</h1>
+        </div>
+    </div>
+
+    <!-- imagen + textos laterales -->
+    <div class="row">
+        <div id="foto_bio" class="col-12 col-sm-6">
+            <img src="{{ artista.foto_perfil.url }}" alt="{{ artista.nombre }}" class="img-fluid">
+        </div>
+        <div id="ficha_bio" class="col">
+            <h1>Bio</h1>
+            <p>{{ bio.bio }}</p>
+            <br>
+            <h1>Expos</h1>
+            <p>{{ bio.expos }}</p>
+        </div>
+    </div>
+    
+    <!-- Boton Volver -->
+    <div id="boton_back" class="row">
+        <div class="col">
+            <div class="btn-centrado embe">
+                <button type="button" onclick="goBack()" class="btn btn-dark bot1">Volver</button>
+            </div> 
+        </div>
+    </div>
+{% endblock%}

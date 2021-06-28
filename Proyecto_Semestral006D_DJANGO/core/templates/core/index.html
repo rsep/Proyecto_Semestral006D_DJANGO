@@ -1,0 +1,103 @@
+{% extends 'core/base.html' %}
+{% load static %} 
+
+{% block docname%}
+    <title>Zero | Home</title>
+{% endblock%}
+
+{% block slider %}
+        <!-- imagenes slider -->
+        <div class="row">
+            <div class="col">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <div id="cinco"> 
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                          </ol>
+                          <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="#">
+                                    <img src="{% static 'core/img/obra1.jpg' %}" class="d-block w-100 anima" alt="obra 1">
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="#"> <!-- ficha_obra1.html-->
+                                    <img src="{% static 'core/img/obra4.jpg' %}" class="d-block w-100 anima" alt="obra 2">
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="#"> <!-- ficha_obra1.html-->
+                                    <img src="{% static 'core/img/obra5.jpg' %}" class="d-block w-100 anima" alt="obra 3">
+                                </a>
+                            </div>
+                          </div>
+                          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                          </a>
+                    </div>                  
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block contenido %}
+        <!-- Search -->
+        <div class="row"> 
+            <div class="col-12 col-md-12">
+                <div id="search">
+                    <div class="row mb-5">
+                        <div class="col-lg-8 mx-auto">
+                            <form action="">
+                                <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                                <div class="input-group">
+                                    <input type="search" placeholder="Buscar por artista, tipo, concepto" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                                    <div class="input-group-append">
+                                    <button id="button-addon1" type="submit" class="btn btn-link text-primary">
+                                        <!-- <i class="bi bi-search"></i> -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#FFF" class="bi bi-search" viewBox="0 0 16 16">
+                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                        </svg>
+                                    </button>
+                                    </div>
+                                </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+
+        <!-- Artistas -->
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <div id="tres">
+                    <h2>Artistas</h2>
+                </div>
+            </div>
+        </div>
+        
+        <!-- cards -->
+        <div id="card1" class="row">       
+            {% for x in artistas %}    
+            <div class="col">
+                <div class="card text-center ex2" style="width: 18rem;">
+                    <a href="{% url 'bio_artista' x.id_artista %}">  
+                        <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua."><img src="{{ x.foto_perfil.url }}" alt="{{ x.nombre }}" class="card-img-top anima"></abbr>                                                                   
+                    </a>
+                    <div class="card-body">
+                        <h3 class="card-text">{{ x.nombre | title}}</h3>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+{% endblock %}

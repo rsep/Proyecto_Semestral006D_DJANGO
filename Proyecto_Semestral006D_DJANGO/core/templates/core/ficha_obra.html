@@ -1,0 +1,79 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block docname %}
+  <title>Zero | Ficha</title>
+{% endblock%}
+
+{% block js %}
+    <script>var id = 1;</script>
+    <script>
+        var precioCLP = {1:9e6,2:7.8e5, 3:12e6,4:5.5e8, 5:3e8,6:25e4, 7:19e5,8:1.8e5, 9:24e5,10:34.8e5 , 11:101e5,12:9.875e5};
+        localStorage.setItem("reg_precios",JSON.stringify(precioCLP));
+    </script>
+    <script src="{% static 'core/js/api_money.js' %}"></script>
+{% endblock%}
+
+{% block contenido%}
+<!-- imagen + textos laterales -->
+<div class="row">
+    <div id="foto_ficha" class="col">
+        <img src="{{ obra.imagen_obra.url }}" alt="{{ artista.nombre }}" class="img-fluid">
+        <div class="pie_foto" style="text-align:center">
+          <h4 style="display: inline;">Precio:</h4>  
+          <h4 class="precio" style="display: inline;"></h4>
+        </div>
+      </div>
+
+<!-- tabla para visualizar la info en 2 columnas -->
+<div id="tabla_ficha" class="col">
+    <table class="table table-borderless">
+        <tbody>
+        
+            <tr>
+            <th scope="row"></th>
+            <td class="title">Artista</td>
+            <td>{{ obra.autor }}</td>
+            </tr>
+            <tr>
+            <th scope="row"></th>
+            <td class="title">Título</td>
+            <td>{{ obra.titulo }}</td>
+            </tr>
+            <tr>
+            <th scope="row"></th>
+            <td class="title">Año</td>
+            <td>{{ obra.año }}</td>
+            </tr>
+            <tr>
+            <th scope="row"></th>
+            <td class="title">Historia</td>
+            <td>{{ obra.historia }}</td>
+            </tr>
+            <tr>
+            <th scope="row"></th>
+            <td class="title">Descripción</td>
+            <td>{{ obra.descripcion }}</td>
+            </tr>
+            <tr>
+            <th scope="row"></th>
+            <td class="title">Técnica</td>
+            <td>{{ obra.tecnica }}</td>
+            </tr>
+            
+        </tbody>
+        </table>
+</div>  
+</div>
+
+
+<!-- Boton Volver -->
+<div id="boton_back" class="row">
+    <div class="col">
+      <div class="btn-centrado embe">
+        <button type="button" onclick="goBack()" class="btn btn-dark bot1">Volver</button>
+    </div>
+    </div>
+</div>
+
+{% endblock%}

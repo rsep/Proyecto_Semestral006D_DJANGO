@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+
+<!-- {% load static %} -->
+{% load crispy_forms_tags %} 
+
+
+{% block docname %}
+    <title>TEST</title>
+{% endblock %}
+
+{% block js %}
+<script>estado_registro()</script>
+{% endblock %}
+
+{% block contenido %}
+
+
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- <div class="form-group"> -->
+                {{ form | crispy}}
+                <br>
+                <button type="submit" class="btn btn-outline-dark">Upload</button>
+            <!-- </div> -->
+        </form>
+        <br>
+        <hr>
+        <br>
+        
+        <form action="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form2 | crispy}}
+            <br>
+            <button type="submit" class="btn btn-outline-dark">SUBIR</button>
+        </form>
+    
+        <span>{{ mensaje }}</span>
+    </div>
+    <div class="col-2"></div>
+</div>
+{% endblock %}
+
+
+{% endblock %}
+
