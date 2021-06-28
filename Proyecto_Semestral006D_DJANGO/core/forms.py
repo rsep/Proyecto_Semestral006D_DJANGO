@@ -13,6 +13,8 @@ class ArtistaForm(ModelForm):
         fields = '__all__'
 
 class BiografiaForm(ModelForm):
+    bio = forms.CharField(widget=forms.Textarea(attrs={"class":"form-control"}))
+    # expos = forms.CharField(widget=forms.Textarea(attrs={"class":"form-control"}))
     class Meta:
         model = Biografia
         fields = '__all__'
@@ -21,3 +23,5 @@ class ObraForm(ModelForm):
     class Meta:
         model = Obra
         fields = '__all__'
+
+

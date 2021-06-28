@@ -18,6 +18,13 @@
     <script src="{% static 'core/js/status.js' %}"></script>
     
     {% block js %}
+    <script src="{% static 'core/js/jquery-3.6.0.js' %}"></script>
+    <script>
+        var precioCLP = {1:9e6,2:7.8e5, 3:12e6,4:5.5e8, 5:3e8,6:25e4, 7:19e5,8:1.8e5, 9:24e5,10:34.8e5 , 11:101e5,12:9.875e5};
+        localStorage.setItem("reg_precios",JSON.stringify(precioCLP));
+    </script>
+    
+    <script src="js/api_money.js"></script>
     {% endblock %}
 </head>
 <body>
@@ -33,7 +40,7 @@
                     <a href="{% url 'galeria_artistas' %}">Artistas</a>
                     <a href="{% url 'nosotros' %}">Nosotros</a>
                     <a href="{% url 'contacto' %}">Contacto</a>
-                    <script>sesion()</script>
+                    <script type="text/javascript">sesion()</script>
                     <div id="social">
                         <!-- twitter -->
                         <a id="social1" target="_blank" href="https://twitter.com/?lang=es">
@@ -79,8 +86,20 @@
                 <!-- Link a perfil -->
                 <div class="linkPerfil">
                     <div class="col" id="enlace">
-                    <script>perfilUser()</script>
+                    <script type="text/javascript">perfilUser()</script>
                     </div>
+                </div>
+
+                <!-- change Money -->
+                <div class="col col-md float-right box-money">
+                    <select id="select_money" onchange="getMoneda()" class="form-control selectpicker moneyBox cambio">
+                        <option class="container-money" value="CLP" selected="selected">CLP</option>
+                        <option class="container-money" value="EUR">EUR</option>
+                        <option class="container-money" value="CAD">CAD</option>
+                        <option class="container-money" value="USD">USD</option>
+                        <option class="container-money" value="AUD">AUD</option>
+                        <option class="container-money" value="JPY">JPY</option>    
+                    </select>
                 </div>
             </div>
         </div>

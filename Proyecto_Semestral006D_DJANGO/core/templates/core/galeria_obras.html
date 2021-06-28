@@ -8,11 +8,6 @@
 
 {% block js %}
     <script src="{% static 'core/js/mostrar.js' %}"></script>
-    <script>
-        var precioCLP = {1:9e6,2:7.8e5, 3:12e6,4:5.5e8, 5:3e8,6:25e4, 7:19e5,8:1.8e5, 9:24e5,10:34.8e5 , 11:101e5,12:9.875e5};
-        localStorage.setItem("reg_precios",JSON.stringify(precioCLP));
-    </script>
-    <script src="{% static 'core/js/api_money.js' %}"></script>
 {% endblock %}
 
 
@@ -63,13 +58,12 @@
                 <div class="card-body">
                     <h3 class="card-text">{{ x.autor | title}}</h3>
                     <h5 class="card-text">{{ x.titulo | title}}</h5>
-                    <script>llenadoPrecios()</script>
+                    <h5 class="card-text precio"></h5>
+                    <!-- ${{ x.precio }} -->
                 </div>
             </div>
         </div>
         {% endfor %}
-
-    <script>llenadoPrecios()</script>
 
     <!-- Boton Ver Más -->
     <div class="row">
