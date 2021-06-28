@@ -48,7 +48,7 @@
     <div id="card1" class="row">       
         {% for x in artistas %}    
         <div class="col">
-            <div class="card text-center ex2" style="width: 18rem;">
+            <div class="card text-center ex2 gallery" style="width: 18rem;">
                 <a href="{% url 'bio_artista' x.id_artista %}"> 
                     <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua."><img src="{{ x.foto_perfil.url }}" alt="{{ x.nombre }}" class="card-img-top anima"></abbr>                                                                   
@@ -74,7 +74,7 @@
     <div id="card3" class="row oculto">
         <div class="col">
 
-            <div class="card text-center ex2" style="width: 18rem;">
+            <div class="card text-center ex2 gallery" style="width: 18rem;">
                 <a href="#"> 
                     <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/9_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
@@ -86,7 +86,7 @@
         </div>
 
         <div class="col">
-            <div class="card text-center ex2" style="width: 18rem;">
+            <div class="card text-center ex2 gallery" style="width: 18rem;">
                 <a href="#"> 
                     <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/10_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
@@ -98,7 +98,7 @@
         </div>
 
         <div class="col">
-            <div class="card text-center ex2" style="width: 18rem;">
+            <div class="card text-center ex2 gallery" style="width: 18rem;">
                 <a href="#"> 
                     <abbr title="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua."><img src="{% static 'core/img/artistas/11_c.jpg' %}" class="card-img-top anima" alt="..."></abbr>
