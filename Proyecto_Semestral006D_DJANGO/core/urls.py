@@ -7,6 +7,8 @@ from .views import index, nosotros, ficha_obra, galeria_obras, galeria_artistas,
 from .views import bio_artista, listar, eliminar
 from .views import test, test2
 
+from .views import test, test2, listar, eliminar
+
 urlpatterns = [
     path('', index, name="index"),
     path('nosotros/', nosotros, name="nosotros"),
