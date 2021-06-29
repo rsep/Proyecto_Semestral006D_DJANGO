@@ -1,6 +1,6 @@
 # from core.models import Obra
 from django.forms.formsets import formset_factory
-from core.forms import ArtistaForm, ObraForm, BiografiaForm, RegistroForm
+from core.forms import ArtistaForm, ObraForm, BiografiaForm, ContactoForm
 from django.shortcuts import render, redirect
 from .models import Artista, Obra, Biografia
 # from django.core.files.storage import FileSystemStorage
@@ -55,11 +55,48 @@ def galeria_artistas(request):
     }
     return render(request,'core/galeria_artistas.html',datos)
 
-def perfil(request):
-    return render(request,'core/perfil.html')
+# OK
+def perfil(request,id):
+    bio = Biografia.objects.get(autor_id = id)
+    autor = Obra(autor_id = id)
 
+    datos = {
+        'form' : BiografiaForm(instance=bio),
+        'form2' : ObraForm(),
+        'cont' : (Obra.objects.filter(autor = id)).count()
+    }
+
+    if request.method == 'POST':
+        formulario = BiografiaForm(data=request.POST, instance=bio)
+        if formulario.is_valid():
+            formulario.save()
+            # datos['mensaje'] = 'Bio modificada correctamente'
+            return redirect(to='index')
+    if request.method == 'POST':
+        formulario2 = ObraForm(data=request.POST, files=request.FILES, instance=autor)
+        if formulario2.is_valid():
+            formulario2.save()
+            # datos['mensaje'] = 'Obra ingresada correctamente'
+            return redirect(to='index')
+
+    return render(request,'core/perfil.html',datos)
+
+# OK
 def contacto(request):
-    return render(request,'core/contacto.html')
+    datos = {
+        'form' : ContactoForm()
+        # creando una instancia por eso va con los ()
+    }
+
+    if request.method == 'POST':
+        formulario = ContactoForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            datos["mensaje"] = "Contacto registrado"
+        else:
+            datos["form"] = formulario
+
+    return render(request,'core/contacto.html',datos)
 
 def registro(request):
     return render(request,'core/registro.html')
@@ -85,30 +122,25 @@ def bio_artista(request,id):
 # TESTEOS
 # -----------------------------------------------------
 
-def test(request,id):
-    # 1. traer el vehiculo, usar metodo get, traer vehiculo cuya patente es igual al id
-    bio = Biografia.objects.get(autor_id = id)
-    # obra = Obra.objects.get(autor_id = id)
+# test para probar cargas a través de formularios
+def test(request):
     datos = {
-        'form' : BiografiaForm(instance=bio),
-        'form2' : ObraForm()
+        'form' : ContactoForm()
+        # creando una instancia por eso va con los ()
     }
 
     if request.method == 'POST':
-        formulario = BiografiaForm(data=request.POST, instance=bio)
-        formulario2 = ObraForm(request.POST)
-        if formulario.is_valid:
+        formulario = ContactoForm(data=request.POST)
+        if formulario.is_valid():
             formulario.save()
-            datos['mensaje'] = 'Bio modificada correctamente'
-            # return redirect(to='index')
-        if formulario2.is_valid:
-            formulario2.save()
-            datos['mensaje'] = 'Obra ingresada correctamente'
-            
-        
+            datos["mensaje"] = "Contacto registrado"
+        else:
+            datos["form"] = formulario
+
     return render(request,'core/test.html',datos)
 
 
+# test para probar agregar un artista a la BD
 def test2(request):
     datos = {
     'form' : ArtistaForm()
@@ -126,7 +158,7 @@ def test2(request):
 
     return render(request,'core/test2.html',datos)
 
-
+# test para listar los artistas registrados en BD
 def listar(request):
     # 1. crear lista vehiculos para guardar elementos
     artistas = Artista.objects.all()
@@ -137,6 +169,7 @@ def listar(request):
     }
     return render(request,'core/listar.html',datos)
 
+# test para eliminar artistas registrados en la BD
 def eliminar(request,id):
     artista = Artista.objects.get(id_artista=id)
     artista.delete()

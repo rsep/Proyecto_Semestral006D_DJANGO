@@ -18,13 +18,13 @@ urlpatterns = [
     path('bio/<id>',bio_artista, name="bio_artista"),
 
 
-    path('perfil/', perfil, name="perfil"),
+    path('perfil/<id>', perfil, name="perfil"),
     path('contacto/', contacto, name="contacto"),
     path('registro/', registro, name="registro"),
 
     
     
-    path('test/<id>', test, name="test"),
+    path('test/', test, name="test"),
     path('test2/',test2, name="test2"),
     path('listar/',listar, name="listar"),
     path('eliminar/<int:id_artista>',eliminar, name="eliminar"),

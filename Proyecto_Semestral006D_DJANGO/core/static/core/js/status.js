@@ -34,7 +34,7 @@ function redireccionar(){
     if (!status){ 
         return false 
     }else if(status.usuario.estado == 1){
-            window.location.replace("perfil.html")
+            window.location.replace("{% url 'perfil' %}")
     }
 }
 

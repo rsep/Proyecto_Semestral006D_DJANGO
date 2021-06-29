@@ -9,40 +9,70 @@
 {% endblock %}
 
 {% block js %}
-<script>estado_registro()</script>
+<script src="{% static 'core/js/status.js' %}"></script>
+{% endblock %}
+
+{% block slider %}
+        <!-- imagenes slider -->
+        <div class="row">
+            <div class="col">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <div id="cinco"> 
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                          </ol>
+                          <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="#"> <!-- ficha_obra1.html-->
+                                    <img src="{% static 'core/img/obra1.jpg' %}" class="d-block w-100 anima" alt="obra 1">
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="#"> <!-- ficha_obra1.html-->
+                                    <img src="{% static 'core/img/obra4.jpg' %}" class="d-block w-100 anima" alt="obra 2">
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="3"> <!-- ficha_obra1.html-->
+                                    <img src="{% static 'core/img/obra5.jpg' %}" class="d-block w-100 anima" alt="obra 3">
+                                </a>
+                            </div>
+                          </div>
+                          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                          </a>
+                    </div>                  
+                </div>
+            </div>
+        </div>
 {% endblock %}
 
 {% block contenido %}
-
-
-<div class="row">
-    <div class="col-2"></div>
-    <div class="col">
-        <form method="POST" action="" enctype="multipart/form-data">
-            {% csrf_token %}
-            <!-- <div class="form-group"> -->
-                {{ form | crispy}}
+    <!-- formulario para registro -->
+    <div class="row">
+        <div class="col bg_registro form_centrado">
+            <h2 class="banner">Contáctanos</h2>
+            <h6 class="banner">En un plazo de 48 responderemos tu solicitud</h6>
+            <form action="" id="form_registro" method="POST" name="contacto">
+                {% csrf_token %}
+                {{ form | crispy }}
                 <br>
-                <button type="submit" class="btn btn-outline-dark">Upload</button>
-            <!-- </div> -->
-        </form>
-        <br>
-        <hr>
-        <br>
-        
-        <form action="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form2 | crispy}}
-            <br>
-            <button type="submit" class="btn btn-outline-dark">SUBIR</button>
-        </form>
-    
-        <span>{{ mensaje }}</span>
+                <div class="btn-centrado embe">
+                    <button type="submit" id="btn_submit" class="btn btn-dark btn-centrado">Enviar</button>
+                    <button type="reset" id="cleaner" class="btn btn-dark btn-centrado">Limpiar</button>
+                </div>
+                <br>
+                {{ mensaje }}
+            </form>
+        </div>
+
     </div>
-    <div class="col-2"></div>
-</div>
-{% endblock %}
-
 
 {% endblock %}
-

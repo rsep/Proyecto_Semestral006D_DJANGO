@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.fields import EmailField
 
 
 # Create your models here.
@@ -37,6 +39,7 @@ class Obra(models.Model):
     tecnica = models.CharField(max_length=150, verbose_name='Técnica')
     imagen_obra = models.ImageField(upload_to='uploads/')
     autor = models.ForeignKey(Artista, on_delete=models.CASCADE)
+    # autor = models.ForeignKey(User) ?????
 
     def __str__(self):
         return self.titulo
@@ -47,3 +50,20 @@ class Obra(models.Model):
     def delete(self, *args, **kwargs):
         self.imagen_obra.delete()
         super().delete(*args, **kwargs)
+
+
+opciones_consultas = [
+    [0, "consulta"],
+    [1, "reclamo"],
+    [2, "sugerencia"],
+    [3, "felicitaciones"]
+]
+class Contacto(models.Model):
+    id_contacto = models.AutoField(primary_key=True, verbose_name='Id Contacto')
+    nombre = models.CharField(max_length=50, verbose_name='Nombre')
+    email = models.EmailField(verbose_name='Mail')
+    tipo_consulta = models.IntegerField(choices=opciones_consultas, verbose_name='Consulta')
+    comentarios = models.TextField(verbose_name='Comentarios')
+
+    def __str__(self):
+        return self.nombre
