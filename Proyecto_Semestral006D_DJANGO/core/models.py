@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -37,6 +38,7 @@ class Obra(models.Model):
     tecnica = models.CharField(max_length=150, verbose_name='Técnica')
     imagen_obra = models.ImageField(upload_to='uploads/')
     autor = models.ForeignKey(Artista, on_delete=models.CASCADE)
+    # autor = models.ForeignKey(User) ?????
 
     def __str__(self):
         return self.titulo

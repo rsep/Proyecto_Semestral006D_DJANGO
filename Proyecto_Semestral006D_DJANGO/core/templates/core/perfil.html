@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% load crispy_forms_tags %} 
 
 {% block docname %}
 <title>Zero | Perfil</title>
@@ -12,6 +13,7 @@
 {% endblock %}
 
 {% block contenido %}
+<!-- PENDIENTE CARGAR NOMBRE DE USER LOGUEADO -->
     <!-- Perfil -->
     <div class="row">
         <div class="col-12 col-md-12">
@@ -25,7 +27,9 @@
     <div class="row">
         <div class="col-12 col-md-12">
             <div class="alineado">
-                <h3>Cargas Totales</h3>
+                <br>
+                <h3>Obras cargadas ( {{ cont }} )</h3>
+                <br>
             </div>
         </div>
     </div>
@@ -33,149 +37,63 @@
     <div id="menu-collap" class="row">
         <div class="col">
             <div class="accordion" id="accordionExample">
-
-                <!-- SECCION Modificar Bio -->
+                <!-- SECCION Modificar Bio & Expos -->
                 <div class="card">
-                  <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Modificar Bio
-                      </button>
-                    </h2>
-                  </div>
-              
-                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <!-- Text Area -->
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Bio</span>
-                            </div>
+                    <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Modificar Bio | Expos
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <!-- Text Area -->
+                            <form method="POST" action="" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <!-- <div class="form-group"> -->
+                                    {{ form | crispy}}
+                                    <br>
+                                    <div class="btn-centrado">
+                                        <button type="submit" class="btn btn-outline-dark">Cargar</button>
+                                    </div>
+                                    
+                                    <br>
+                                <!-- </div> -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
-                            <textarea id="bio" class="form-control" aria-label="With textarea"></textarea>
-                        </div>
-                        <div class="btn_submit">
-                            <input class="btn btn-primary" type="submit" value="Submit">
-                        </div>
-                    <!-- cierrre card body bio -->
-                    </div>
-                  </div>
-                <!-- cierre seccion modificar bio -->
-                </div>
-    
-                <!-- SECCION Modificar Expos -->
-                <div class="card">
-                  <div class="card-header" id="headingTwo">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Modificar Expos
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <!-- Text Area -->
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Expos</span>
-                            </div>
-                            <textarea id="expos" class="form-control" aria-label="With textarea"></textarea>
-                        </div>
-                        <div class="btn_submit">
-                            <input class="btn btn-primary" type="submit" value="Submit">  
-                        </div>
-                        <!-- cierrre card body bio -->
-                    </div>
-                  </div>
-                </div>
-    
                 <!-- SECCION Subir Nuevo -->
                 <div class="card">
-                  <div class="card-header" id="headingThree">
-                    <h2 class="mb-0">
-                      <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Subir Nuevo
-                      </button>
-                    </h2>
-                  </div>
-                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                    
-                    <form action="" id="form_carga" method="POST">
-                      <div class="card-body">
-                          <!-- info input -->
-                          <!-- titulo -->
-                          <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">Título</span>
-                              </div>
-                              <input type="text" class="form-control" id="titulo" placeholder="Escribe un Título" aria-label="Username" aria-describedby="basic-addon1">
-                              <div class="invalid-feedback" id="eTitulo"></div>
-                          </div>
-                          <!-- año -->
-                          <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">Año</span>
-                              </div>
-                              <input type="number" class="form-control" id="year" placeholder="YYYY" aria-label="Username" aria-describedby="basic-addon1" min="1960" step="1">
-                              <script>document.getElementById("year").setAttribute("max",new Date().getFullYear())</script>
-                              <div class="invalid-feedback" id="eYear"></div>
-                          </div>
-                          <!-- historia -->
-                          <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">Historia</span>
-                              </div>
-                              <textarea id="historia" class="form-control" placeholder="Escribe una Historia" aria-label="With textarea"></textarea>
-                              <div class="invalid-feedback" id="eHistoria"></div>
-                          </div>
-                          <!-- descripcion -->
-                          <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">Descripción</span>
-                              </div>
-                              <textarea id="descripcion" class="form-control" placeholder="Escribe una Descripción" aria-label="With textarea"></textarea>
-                              <div class="invalid-feedback" id="eDescripcion"></div>
-                          </div>
-                          <!-- tecnica -->
-                          <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">Técnica</span>
-                              </div>
-                              <input type="text" class="form-control" id="tecnica" placeholder="Escribe una Técnica" aria-label="Username" aria-describedby="basic-addon1">
-                              <div class="invalid-feedback" id="eTecnica"></div>
-                          </div>
-                          <!-- precio -->
-                          <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                  <span class="input-group-text" id="basic-addon1">Precio</span>
-                                  <span class="input-group-text">$</span>
-                              </div>
-                              <input type="number" id="precio" class="form-control" aria-label="Amount (to the nearest dollar)">
-                              <div class="invalid-feedback" id="ePrecio"></div>
-                          </div>
-      
-                          <!-- para subir archivo 1 -->
-                          <div class="input-group cargaFile">
-                              <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
-                                <label class="custom-file-label" for="inputGroupFile">Examinar equipo</label>
-                              </div>
-                              <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon" onclick="cleanInput($('#inputGroupFile'))">Cancelar</button>
-                              </div>
-                          </div>
-      
-                          <!-- boton submit -->
-                          <div class="btn_submit">
-                              <button class="btn btn-dark" id="btn_carga" type="submit">Cargar</button>
-                          </div>
-                      </div>
-                    </form>
+                    <div class="card-header" id="headingThree">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Subir Nuevo
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        
+                        <!-- FORMULARIO NUEVA OBRA -->
+                        <form method="POST" action="" id="form_carga" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="card-body">
+                                {{ form2 | crispy}}
+                                <br>
+                                <div class="btn-centrado">
+                                    <button type="submit" class="btn btn-outline-dark">Cargar</button>
+                                    <br>
+                                </div>
+                                
+                            </div>
+                        </form>
 
-                  </div>
+                    </div>
                 </div>
-              <!--fin div clase accordion  -->
+            <!--fin div clase accordion  -->
             </div>
         </div>
     </div>
-{% endblock %}      
+{% endblock %}

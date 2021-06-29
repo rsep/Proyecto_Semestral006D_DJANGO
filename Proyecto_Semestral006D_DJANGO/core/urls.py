@@ -16,7 +16,7 @@ urlpatterns = [
     path('bio/<id>',bio_artista, name="bio_artista"),
 
 
-    path('perfil/', perfil, name="perfil"),
+    path('perfil/<id>', perfil, name="perfil"),
     path('contacto/', contacto, name="contacto"),
     path('registro/', registro, name="registro"),
 

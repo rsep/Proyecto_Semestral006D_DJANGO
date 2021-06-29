@@ -6,6 +6,10 @@
     <title>Zero | Bio</title>
 {% endblock %}
 
+{% block js %}
+<script src="{% static 'core/js/status.js' %}"></script>
+{% endblock %}
+
 {% block slider %}
         <!-- imagenes slider -->
         <div class="row">
@@ -49,42 +53,93 @@
 {% endblock %}
 
 {% block contenido %}
-
-
-<div class="row">
-    <div class="col-2"></div>
-    <div class="col">
-        <form method="POST" action="" enctype="multipart/form-data">
-            {% csrf_token %}
-            <!-- <div class="form-group"> -->
-                {{ form | crispy}}
-                <br>
-                <button type="submit" class="btn btn-outline-dark">Upload</button>
-            <!-- </div> -->
-        </form>
-        <br>
-        <hr>
-        <br>
-        
-        <form action="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form2 | crispy}}
-            <br>
-            <button type="submit" class="btn btn-outline-dark">SUBIR</button>
-        </form>
-    
-        <span>{{ mensaje }}</span>
+<!-- PENDIENTE CARGAR NOMBRE DE USER LOGUEADO -->
+    <!-- Perfil -->
+    <div class="row">
+        <div class="col-12 col-md-12">
+            <div class="alineado" id="bienvenida">
+                <script>bienvenida()</script>
+            </div>
+        </div>
     </div>
-    <div class="col-2"></div>
-</div>
+
+    <!-- Cargas Totales -->
+    <div class="row">
+        <div class="col-12 col-md-12">
+            <div class="alineado">
+                <h3>Obras cargadas ( {{ cont }} )</h3>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <div id="menu-collap" class="row">
+        <div class="col">
+            <div class="accordion" id="accordionExample">
+                <!-- SECCION Modificar Bio & Expos -->
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Modificar Bio | Expos
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <!-- Text Area -->
+                            <form method="POST" action="" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <!-- <div class="form-group"> -->
+                                    {{ form | crispy}}
+                                    <br>
+                                    <div class="btn-centrado">
+                                        <button type="submit" class="btn btn-outline-dark">Cargar</button>
+                                    </div>
+                                    
+                                    <br>
+                                <!-- </div> -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCION Subir Nuevo -->
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Subir Nuevo
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        
+                        <!-- FORMULARIO NUEVA OBRA -->
+                        <form method="POST" action="" id="form_carga" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="card-body">
+                                {{ form2 | crispy}}
+                                <br>
+                                <div class="btn-centrado">
+                                    <button type="submit" class="btn btn-outline-dark">Cargar</button>
+                                    <br>
+                                </div>
+                                
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            <!--fin div clase accordion  -->
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 
 
 <!-- TAREA SABADO -->
 <!-- carousel index -->
-<!-- perfil -->
 <!-- contacto -->
 <!-- registro / login -->
-
-<!-- probar cargar data de 1 obra segun id en una template (ficha_obra) -->
