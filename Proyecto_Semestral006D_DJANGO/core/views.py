@@ -1,11 +1,13 @@
 # from core.models import Obra
 from django.forms.formsets import formset_factory
+from django.http import response
 from core.forms import ArtistaForm, ObraForm, BiografiaForm, ContactoForm
 from django.shortcuts import render, redirect
 from .models import Artista, Obra, Biografia
 # from django.core.files.storage import FileSystemStorage
 # from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+import requests
 
 # Create your views here.
 # OK
@@ -122,22 +124,16 @@ def bio_artista(request,id):
 # TESTEOS
 # -----------------------------------------------------
 
-# test para probar cargas a través de formularios
+# test para probar api
 def test(request):
+    response=requests.get('https://api.gael.cloud/general/public/monedas').json()
     datos = {
-        'form' : ContactoForm()
-        # creando una instancia por eso va con los ()
+        'response': response
     }
 
-    if request.method == 'POST':
-        formulario = ContactoForm(data=request.POST)
-        if formulario.is_valid():
-            formulario.save()
-            datos["mensaje"] = "Contacto registrado"
-        else:
-            datos["form"] = formulario
+    return render(request,'core/test.html', datos)
 
-    return render(request,'core/test.html',datos)
+    # return render(request,'core/test.html',datos)
 
 
 # test para probar agregar un artista a la BD

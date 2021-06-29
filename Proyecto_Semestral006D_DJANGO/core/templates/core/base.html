@@ -17,14 +17,12 @@
     <script src="{% static 'core/js/funciones_genericas.js' %}"></script>
     <script src="{% static 'core/js/status.js' %}"></script>
     
-    {% block js %}
     <script src="{% static 'core/js/jquery-3.6.0.js' %}"></script>
-    <script>
-        var precioCLP = {1:9e6,2:7.8e5, 3:12e6,4:5.5e8, 5:3e8,6:25e4, 7:19e5,8:1.8e5, 9:24e5,10:34.8e5 , 11:101e5,12:9.875e5};
-        localStorage.setItem("reg_precios",JSON.stringify(precioCLP));
-    </script>
+
     
-    <script src="js/api_money.js"></script>
+    <script src="{% static 'core/js/api_money.js' %}"></script>
+
+    {% block js %}
     {% endblock %}
 </head>
 <body>

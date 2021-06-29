@@ -55,24 +55,9 @@
 {% endblock %}
 
 {% block contenido %}
-    <!-- formulario para registro -->
-    <div class="row">
-        <div class="col bg_registro form_centrado">
-            <h2 class="banner">Contáctanos</h2>
-            <h6 class="banner">En un plazo de 48 responderemos tu solicitud</h6>
-            <form action="" id="form_registro" method="POST" name="contacto">
-                {% csrf_token %}
-                {{ form | crispy }}
-                <br>
-                <div class="btn-centrado embe">
-                    <button type="submit" id="btn_submit" class="btn btn-dark btn-centrado">Enviar</button>
-                    <button type="reset" id="cleaner" class="btn btn-dark btn-centrado">Limpiar</button>
-                </div>
-                <br>
-                {{ mensaje }}
-            </form>
-        </div>
-
-    </div>
+    <strong>Lista todas las Monedas</strong>
+    {% for x in response %}
+    {{ x.Nombre }}
+    {% endfor %}
 
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
-
+{% load humanize %}
 
 {% block docname %}
     <title>Zero | Galeria Obras</title>
@@ -59,11 +59,12 @@
                     <h3 class="card-text">{{ x.autor | title}}</h3>
                     <h5 class="card-text">{{ x.titulo | title}}</h5>
                     <h5 class="card-text precio"></h5>
-                    <!-- ${{ x.precio }} -->
+                    <!-- ${{ x.precio | intcomma }} -->
                 </div>
             </div>
         </div>
         {% endfor %}
+    </div>
 
     <!-- Boton Ver Más -->
     <div class="row">
