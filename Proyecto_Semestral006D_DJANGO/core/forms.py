@@ -4,7 +4,7 @@ from django import forms
 from django.db.models.fields.related import ForeignKey
 from django.forms import ModelForm
 from django.forms import fields
-from .models import Artista, Biografia, Obra
+from .models import Artista, Biografia, Contacto, Obra
 
 
 class ArtistaForm(ModelForm):
@@ -28,4 +28,10 @@ class ObraForm(ModelForm):
         # fields = '__all__'
         fields = ['precio', 'titulo', 'año', 'historia', 'descripcion', 'tecnica', 'imagen_obra']
 
+
+class ContactoForm(ModelForm):
+    class Meta:
+        # esta clase (Meta) toma los tipos de datos del modelo que ya está definidio en Models (por eso  se importa)
+        model = Contacto
+        fields = '__all__'
 

@@ -55,97 +55,24 @@
 {% endblock %}
 
 {% block contenido %}
-<!-- PENDIENTE CARGAR NOMBRE DE USER LOGUEADO -->
-    <!-- Perfil -->
+    <!-- formulario para registro -->
     <div class="row">
-        <div class="col-12 col-md-12">
-            <div class="alineado" id="bienvenida">
-                <script>bienvenida()</script>
-            </div>
-        </div>
-    </div>
-
-    <!-- Cargas Totales -->
-    <div class="row">
-        <div class="col-12 col-md-12">
-            <div class="alineado">
-                <h3>Obras cargadas ( {{ cont }} )</h3>
+        <div class="col bg_registro form_centrado">
+            <h2 class="banner">Contáctanos</h2>
+            <h6 class="banner">En un plazo de 48 responderemos tu solicitud</h6>
+            <form action="" id="form_registro" method="POST" name="contacto">
+                {% csrf_token %}
+                {{ form | crispy }}
                 <br>
-            </div>
+                <div class="btn-centrado embe">
+                    <button type="submit" id="btn_submit" class="btn btn-dark btn-centrado">Enviar</button>
+                    <button type="reset" id="cleaner" class="btn btn-dark btn-centrado">Limpiar</button>
+                </div>
+                <br>
+                {{ mensaje }}
+            </form>
         </div>
+
     </div>
 
-    <div id="menu-collap" class="row">
-        <div class="col">
-            <div class="accordion" id="accordionExample">
-                <!-- SECCION Modificar Bio & Expos -->
-                <div class="card">
-                    <div class="card-header" id="headingTwo">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Modificar Bio | Expos
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                        <div class="card-body">
-                            <!-- Text Area -->
-                            <form method="POST" action="" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                <!-- <div class="form-group"> -->
-                                    {{ form | crispy}}
-                                    <br>
-                                    <div class="btn-centrado">
-                                        <button type="submit" class="btn btn-outline-dark">Cargar</button>
-                                    </div>
-                                    
-                                    <br>
-                                <!-- </div> -->
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SECCION Subir Nuevo -->
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Subir Nuevo
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                        
-                        <!-- FORMULARIO NUEVA OBRA -->
-                        <form method="POST" action="" id="form_carga" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="card-body">
-                                {{ form2 | crispy}}
-                                <br>
-                                <div class="btn-centrado">
-                                    <button type="submit" class="btn btn-outline-dark">Cargar</button>
-                                    <br>
-                                </div>
-                                
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            <!--fin div clase accordion  -->
-            </div>
-        </div>
-    </div>
 {% endblock %}
-
-
-{% endblock %}
-
-<<<<<<< HEAD
-<!-- TAREA SABADO -->
-<!-- carousel index -->
-<!-- contacto -->
-<!-- registro / login -->
-=======
->>>>>>> f7be4076fdf0cee71d08ec5a892fee4d2faf2264
