@@ -56,8 +56,10 @@
 
 {% block contenido %}
     <strong>Lista todas las Monedas</strong>
+    <br>
     {% for x in response %}
-    {{ x.Nombre }}
+    {{x.Valor}}
+    <br>
     {% endfor %}
 
 {% endblock %}

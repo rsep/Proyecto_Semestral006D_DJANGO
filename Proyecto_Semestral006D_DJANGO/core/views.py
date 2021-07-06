@@ -171,3 +171,37 @@ def eliminar(request,id):
     artista.delete()
     # hacer un redirect que es cambiar de vista
     return redirect(to='listar')
+
+
+def test3(request,id):
+    bio = Biografia.objects.get(autor_id = id)
+    autor = Obra(autor_id = id)
+    autor_bio = Biografia(autor_id = id)
+
+    datos = {
+        'form' : BiografiaForm(instance=bio),
+        'form2' : ObraForm(),
+        'form3' : BiografiaForm(),
+        'cont' : (Obra.objects.filter(autor = id)).count()
+    }
+
+    if request.method == 'POST':
+        formulario = BiografiaForm(data=request.POST, instance=bio)
+        if formulario.is_valid():
+            formulario.save()
+            # datos['mensaje'] = 'Bio modificada correctamente'
+            return redirect(to='index')
+    if request.method == 'POST':
+        formulario2 = ObraForm(data=request.POST, files=request.FILES, instance=autor)
+        if formulario2.is_valid():
+            formulario2.save()
+            # datos['mensaje'] = 'Obra ingresada correctamente'
+            return redirect(to='index')
+    if request.method == 'POST':
+        formulario3 = BiografiaForm(data=request.POST, files=request.FILES, instance=autor_bio)
+        if formulario3.is_valid():
+            formulario3.save()
+            # datos['mensaje'] = 'Obra ingresada correctamente'
+            return redirect(to='index')
+
+    return render(request,'core/test3.html',datos)

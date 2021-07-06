@@ -7,7 +7,7 @@ from .views import index, nosotros, ficha_obra, galeria_obras, galeria_artistas,
 from .views import bio_artista, listar, eliminar
 from .views import test, test2
 
-from .views import test, test2, listar, eliminar
+from .views import test, test2, listar, eliminar, test3
 
 urlpatterns = [
     path('', index, name="index"),
@@ -22,7 +22,7 @@ urlpatterns = [
     path('contacto/', contacto, name="contacto"),
     path('registro/', registro, name="registro"),
 
-    
+    path('test3/<id>', test3, name="test3"),
     
     path('test/', test, name="test"),
     path('test2/',test2, name="test2"),
