@@ -1,11 +1,13 @@
 # from core.models import Obra
 from django.forms.formsets import formset_factory
+from django.http import response
 from core.forms import ArtistaForm, ObraForm, BiografiaForm, ContactoForm
 from django.shortcuts import render, redirect
 from .models import Artista, Obra, Biografia
 # from django.core.files.storage import FileSystemStorage
 # from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+import requests
 
 # Create your views here.
 # OK
@@ -139,6 +141,7 @@ def test(request):
 
     return render(request,'core/test.html',datos)
 
+    # return render(request,'core/test.html',datos)
 
 # test para probar agregar un artista a la BD
 def test2(request):

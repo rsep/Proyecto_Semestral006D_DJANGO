@@ -1,12 +1,12 @@
 // llenado precios
-function llenadoPrecios(){
-    var precio_array = JSON.parse(localStorage.getItem("reg_precios"));
-    var price = 0;
-    $('.precio').each(function(index, elemento) {
-        price = precio_array[index+1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        elemento.innerHTML= '$ ' + price + ' CLP';
-})
-}
+// function llenadoPrecios(){
+//     var precio_array = JSON.parse(localStorage.getItem("reg_precios"));
+//     var price = 0;
+//     $('.precio').each(function(index, elemento) {
+//         price = precio_array[index+1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+//         elemento.innerHTML= '$ ' + price + ' CLP';
+// })
+// }
 
 
 
