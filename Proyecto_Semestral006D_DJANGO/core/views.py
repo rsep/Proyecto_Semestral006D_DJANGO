@@ -124,17 +124,24 @@ def bio_artista(request,id):
 # TESTEOS
 # -----------------------------------------------------
 
-# test para probar api
+# test para probar cargas a través de formularios
 def test(request):
-    response=requests.get('https://api.gael.cloud/general/public/monedas').json()
     datos = {
-        'response': response
+        'form' : ContactoForm()
+        # creando una instancia por eso va con los ()
     }
 
-    return render(request,'core/test.html', datos)
+    if request.method == 'POST':
+        formulario = ContactoForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            datos["mensaje"] = "Contacto registrado"
+        else:
+            datos["form"] = formulario
+
+    return render(request,'core/test.html',datos)
 
     # return render(request,'core/test.html',datos)
-
 
 # test para probar agregar un artista a la BD
 def test2(request):
