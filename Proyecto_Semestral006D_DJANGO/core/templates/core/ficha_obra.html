@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block docname %}
   <title>Zero | Ficha</title>
@@ -20,8 +21,9 @@
     <div id="foto_ficha" class="col">
         <img src="{{ obra.imagen_obra.url }}" alt="{{ artista.nombre }}" class="img-fluid">
         <div class="pie_foto" style="text-align:center">
-          <h4 style="display: inline;">Precio:</h4>  
-          <h4 class="precio" style="display: inline;"></h4>
+          <!-- <h4 style="display: inline;">Precio:</h4> -->
+          <h4>${{ obra.precio | intcomma}}</h4>
+          <!-- <h4 class="precio" style="display: inline;"></h4> -->
         </div>
       </div>
 
