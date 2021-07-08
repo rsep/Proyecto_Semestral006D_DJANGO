@@ -45,7 +45,7 @@ def galeria_obras(request):
     if request.method == 'GET':
         obras = Obra.objects.all()
     datos = { 
-        'obras' : obras
+        'obras' : obras.order_by(Obra.id_obra)
     }
     return render(request,'core/galeria_obras.html',datos)
 
