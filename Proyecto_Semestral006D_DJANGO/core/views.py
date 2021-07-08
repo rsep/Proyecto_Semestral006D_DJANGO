@@ -8,6 +8,7 @@ from .models import Artista, Obra, Biografia
 # from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 import requests
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 # OK
@@ -62,10 +63,14 @@ def perfil(request,id):
     bio = Biografia.objects.get(autor_id = id)
     autor = Obra(autor_id = id)
 
+    obras = Obra.objects.filter(autor_id = id).order_by('id_obra')
+
     datos = {
         'form' : BiografiaForm(instance=bio),
         'form2' : ObraForm(),
-        'cont' : (Obra.objects.filter(autor = id)).count()
+        'cont' : (Obra.objects.filter(autor = id)).count(),
+        # 'artistas' : artistas
+        'obras' : obras
     }
 
     if request.method == 'POST':
@@ -82,6 +87,9 @@ def perfil(request,id):
             return redirect(to='index')
 
     return render(request,'core/perfil.html',datos)
+
+
+
 
 # OK
 def contacto(request):
@@ -155,22 +163,48 @@ def test2(request):
     return render(request,'core/test2.html',datos)
 
 # test para listar los artistas registrados en BD
-def listar(request):
+def listar(request,id):
     # 1. crear lista vehiculos para guardar elementos
-    artistas = Artista.objects.all()
+    # artistas = Artista.objects.all()
+    # obras = Obra.objects.all()
+    obras = Obra.objects.filter(autor_id = id).order_by('id_obra')
 
     # 2. crear diccionario de datos, dentro del objeto datos, voy a guardar los vehiculos
     datos = {
-        'artistas' : artistas
+        # 'artistas' : artistas
+        'obras' : obras
     }
     return render(request,'core/listar.html',datos)
 
+
 # test para eliminar artistas registrados en la BD
 def eliminar(request,id):
-    artista = Artista.objects.get(id_artista=id)
-    artista.delete()
-    # hacer un redirect que es cambiar de vista
-    return redirect(to='listar')
+    obra = Obra.objects.get(id_obra = id)
+    obra.delete()
+
+    # con esta instrucción regresa a la url anterior
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def modificar_obra(request,id):
+    obra = Obra.objects.get(id_obra = id)
+
+    # 2. construccion formulario
+    datos = {
+        'form' : ObraForm(instance=obra)
+    }
+
+    if request.method == 'POST':
+        formulario = ObraForm(data=request.POST, instance=obra)
+        # verificar que el formulario sea valido
+        if formulario.is_valid():
+            # debo guardar el formulario
+            formulario.save()
+            # mensaje de texto
+            datos['mensaje']='Obra modificada exitosamente'
+            return redirect(to='index')
+        
+    return render(request,'core/modificar_obra.html',datos)
 
 
 def test3(request,id):

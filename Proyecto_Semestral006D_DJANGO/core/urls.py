@@ -2,7 +2,7 @@
 # hacer mapeo para abrir el archivo html (entre lo que se escribe en url v/s lo que se va a mostrar)
 from collections import namedtuple
 from django.urls import path
-from .views import index, nosotros, ficha_obra, galeria_obras, galeria_artistas, perfil, contacto, registro
+from .views import index, modificar_obra, nosotros, ficha_obra, galeria_obras, galeria_artistas, perfil, contacto, registro
 
 from .views import bio_artista, listar, eliminar
 from .views import test, test2
@@ -26,6 +26,7 @@ urlpatterns = [
     
     path('test/', test, name="test"),
     path('test2/',test2, name="test2"),
-    path('listar/',listar, name="listar"),
-    path('eliminar/<int:id_artista>',eliminar, name="eliminar"),
+    path('listar/<id>',listar, name="listar"),
+    path('eliminar/<id>',eliminar, name="eliminar"),
+    path('obras/editar/<id>',modificar_obra, name="modificar_obra"),
 ]

@@ -15,23 +15,32 @@
 {% block contenido %}
 <!-- PENDIENTE CARGAR NOMBRE DE USER LOGUEADO -->
     <!-- Perfil -->
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-12 col-md-12">
             <div class="alineado" id="bienvenida">
                 <script>bienvenida()</script>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <!-- Cargas Totales -->
+    <!-- Bienvenida -->
     <div class="row">
+        <div class="col-2"></div>
         <div class="col-12 col-md-12">
             <div class="alineado">
                 <br>
-                <h3>Obras cargadas ( {{ cont }} )</h3>
-                <br>
+                <h3>Mi Perfil</h3>
             </div>
         </div>
+        <div class="col-2">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col">
+            <hr>
+        </div>
+        <div class="col-2"></div>
     </div>
 
     <div id="menu-collap" class="row">
@@ -96,4 +105,64 @@
             </div>
         </div>
     </div>
+
+
+
+    <!-- Titulo tabla -->
+    <div class="row">
+        <div class="col-12 col-md-12">
+            <div class="alineado">
+                <br>
+                <h3>Historial de Obras</h3>
+                <h5>- Total cargas: {{ cont }}</h5>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabla Listar del CRUD -->
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col">
+            <table class="table table-hover" style="background-color: #fff;"> 
+                <div>
+                    <tr style="background-color: #272822; color: #fff;">
+                        <td>ID</td>
+                        <td>Titulo</td>
+                        <td>Año</td>
+                        <td>Historia</td>
+                        <td>Descripción</td>
+                        <td>Técnica</td>
+                        <td>Precio</td>
+                        <td>Imágen</td>
+                        <td>Acciones</td>
+                    </tr>
+                </div>        
+
+                <!-- en cada vuelta del for, agregue una fila -->
+                {% for x in obras %}
+                <tr>
+                    <!-- para imprimir en pantalla es doble llave -->
+                    <td>{{ x.id_obra }}</td>
+                    <td>{{ x.titulo }}</td>
+                    <td>{{ x.año }}</td>
+                    <td>{{ x.historia }}</td>
+                    <td>{{ x.descripcion }}</td>
+                    <td>{{ x.tecnica }}</td>
+                    <td>{{ x.precio }}</td>
+                    <!-- {{ x.imagen.url }} -->
+                    <td>
+                        <img src="{{ x.imagen_obra.url }}" alt="{{ x.titulo }}" class="img-fluid img-thumbnail" style="max-height: 100px;"></td>
+                    <td>
+                        <a href="{% url 'eliminar' x.id_obra %}" class="badge badge-pill badge-danger">Eliminar</a>
+                        <a href="{% url 'modificar_obra' x.id_obra %}" class="badge badge-pill badge-secondary">Modificar</a>
+                    </td>
+                    
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    
 {% endblock %}
